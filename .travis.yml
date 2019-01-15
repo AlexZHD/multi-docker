@@ -9,14 +9,12 @@ script:
   - docker run bird5555/react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t bird5555/multi-client -f ./client
-  - docker build -t bird5555/multi-nginx -f ./nginx
-  - docker build -t bird5555/multi-server -f ./server
-  - docker build -t bird5555/multi-worker -f ./worker
+  - docker build -t bird5555/multi-client ./client
+  - docker build -t bird5555/multi-nginx ./nginx
+  - docker build -t bird5555/multi-server ./server
+  - docker build -t bird5555/multi-worker ./worker
 
-#login to docker CLI
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-#put to docker hub  
 - docker push bird5555/multi-client
 - docker push bird5555/multi-nginx
 - docker push bird5555/multi-server
