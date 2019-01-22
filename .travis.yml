@@ -14,9 +14,12 @@ after_success:
   - docker build -t bird5555/multi-nginx ./nginx
   - docker build -t bird5555/multi-server ./server
   - docker build -t bird5555/multi-worker ./worker
-
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-- docker push bird5555/multi-client
-- docker push bird5555/multi-nginx
-- docker push bird5555/multi-server
-- docker push bird5555/multi-worker
+  
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push bird5555/multi-client
+  - docker push bird5555/multi-nginx
+  - docker push bird5555/multi-server
+  - docker push bird5555/multi-worker
+  
